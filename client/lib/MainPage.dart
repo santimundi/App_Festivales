@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:client/Notifications.dart';
 
+//Proba Santi Mundi
+
 class News {
   String noticia;
 
