@@ -1,5 +1,5 @@
-import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: FutureBuilder(
-          Future: db.collection('todos').getDocuments(),
-          builder: (context)
+          future: db.collection('todos').getDocuments(),
+          
         )
       ),
     );
