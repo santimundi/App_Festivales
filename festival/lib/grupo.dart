@@ -19,6 +19,6 @@ final linkinparkgrupo = Grupo(
   descripcionGrupo: 'Grupo nu-metal',
   anoFundadoGrupo: '1995',
   integrantesGrupo: ['El primero', 'El segundo', 'El tercero'],
-  imagenGrupo: 'assets/LP.jpg',
+  imagenGrupo: "'https://i2.sndcdn.com/avatars-000142079606-avzu5z-t500x500.jpg'", // 'assets/LP.jpg',
   productos: ['Camiseta', 'Sudadera', 'Pantalones'],
 );
