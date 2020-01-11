@@ -70,6 +70,7 @@ class ListConcerts extends StatelessWidget {
         List<Concierto> conciertos = snapshot.data;
         return Expanded(
           child: ListView.builder(
+            scrollDirection: Axis.vertical,
             itemCount: conciertos.length,
             itemBuilder: (context, index){
               return ListTile(
@@ -100,7 +101,8 @@ class _ConciertosState extends State<Conciertos> {
             children: <Widget>[
               DiaStage(),
               SizedBox(height: 20,),
-              ListConcerts(),              
+              ListConcerts(),
+              
             ],
           )
         ),

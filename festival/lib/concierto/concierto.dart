@@ -5,7 +5,8 @@ class Concierto{
   String dia, horaInicio, horaFinal; //DateTime, mirar como asignarla
   int codigoIDConcierto, codigoIDGrupo;
 
-  /*Concierto({
+  Concierto({
+    this.id,
     this.codigoIDConcierto,
     this.codigoIDGrupo,
     this.imagenGrupo,
@@ -13,7 +14,7 @@ class Concierto{
     this.horaInicio,
     this.horaFinal,
     this.escenario,
-  });*/
+  });
 
   Concierto.fromFirestore(DocumentSnapshot doc)
     : id = doc.documentID,
