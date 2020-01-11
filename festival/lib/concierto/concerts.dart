@@ -39,8 +39,6 @@ class DiaStage extends StatelessWidget {
   }
 }
 
-
-
 class ListConcerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
