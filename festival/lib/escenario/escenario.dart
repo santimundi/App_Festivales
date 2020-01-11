@@ -10,10 +10,10 @@ class Stage{
     this.conciertosStage,
   });
 }
-
+/*
 final blue = Stage(
   codigoIDStage: '000',
   nombreStage: 'blue',
   conciertosStage: [linkinparkconcierto, gunsNRosesconcierto]
 );
-
+*/

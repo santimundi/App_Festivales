@@ -3,7 +3,7 @@ import 'package:festival/concierto/concierto.dart';
 import 'grupo.dart';
 
 class InfoGroup extends StatelessWidget {
-  final Concierto concierto = gunsNRosesconcierto;
+  //final Concierto concierto = gunsNRosesconcierto;
   final Grupo grupo = gunsNRosesgrupo;
 
    @override
@@ -16,7 +16,7 @@ class InfoGroup extends StatelessWidget {
             children: <Widget>[
               Iconos(),
               Foto(grupo.imagenGrupo),
-              Informacion(grupo, concierto),
+              //Informacion(grupo, concierto),
               //Pie();
             ],
           )
