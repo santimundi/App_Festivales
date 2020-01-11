@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'concierto.dart';
+import 'package:festival/concierto/concierto.dart';
 import 'grupo.dart';
 
 class InfoGroup extends StatelessWidget {
-  final Concierto concierto = linkinparkconcierto;
-  final Grupo grupo = linkinparkgrupo;
+  final Concierto concierto = gunsNRosesconcierto;
+  final Grupo grupo = gunsNRosesgrupo;
 
    @override
    Widget build(BuildContext context){
@@ -15,7 +15,7 @@ class InfoGroup extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Iconos(),
-              Foto(grupo),
+              Foto(grupo.imagenGrupo),
               Informacion(grupo, concierto),
               //Pie();
             ],
@@ -62,13 +62,16 @@ class Iconos extends StatelessWidget {
   }
 }
 
-class Foto extends StatelessWidget {
-  final Grupo grupo;
+class Foto extends StatefulWidget {
+  final String imagenGrupo;
 
-  Foto(this.grupo);
-  
-  String linkfoto = 'https://i2.sndcdn.com/avatars-000142079606-avzu5z-t500x500.jpg';
+  Foto(this.imagenGrupo);
 
+  @override
+  _FotoState createState() => _FotoState();
+}
+
+class _FotoState extends State<Foto> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,7 +80,7 @@ class Foto extends StatelessWidget {
       child: Image.network(
         //this.grupo.imagenGrupo,
         //mirar como coger el link de una variable
-        linkfoto,
+        widget.imagenGrupo,
         fit: BoxFit.cover,
       )   
     );

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "428373089319",
+    "firebase_url": "https://festivalappandroidupc.firebaseio.com",
+    "project_id": "festivalappandroidupc",
+    "storage_bucket": "festivalappandroidupc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428373089319:android:d5899ff5497516f2374202",
+        "android_client_info": {
+          "package_name": "com.festivalappandroidupc.festival"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428373089319-c33nsqkdsudgg31l48rmt8tqn3s74ds3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMAd6a6mTigVxC8zTGVYTkKOgvNAuZ9FE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428373089319-c33nsqkdsudgg31l48rmt8tqn3s74ds3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
