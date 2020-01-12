@@ -1,6 +1,8 @@
 import 'package:festival/concierto/concierto.dart';
+import 'package:festival/concierto/concerts.dart';
 import 'package:flutter/material.dart';
 import 'escenario.dart';
+import 'package:festival/dataservice.dart' as db;
 
 class Iconos extends StatelessWidget {
   
@@ -60,7 +62,7 @@ class _DiaState extends State<Dia> {
           Padding(
             padding: const EdgeInsets.only(left:55.0, right: 10),
             child: Text(
-                "Hola",
+                "Miercoles",
                 //blue.conciertosStage[1].dia,
                 style: TextStyle(fontSize: 30),
             ),
@@ -88,8 +90,7 @@ class ListadoConciertos extends StatelessWidget {
       height: 100,
       child: Row(
         children: <Widget>[      
-          CartaConcierto(escenarios[0].conciertosStage[0],),
-          CartaConcierto(escenarios[0].conciertosStage[1]),
+          CartaConcierto(),
         ],
       ),
     );
@@ -97,19 +98,62 @@ class ListadoConciertos extends StatelessWidget {
 }
 
 class CartaConcierto extends StatelessWidget {
-  final Concierto concert;
-  CartaConcierto(this.concert);
-
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Wrap(
-        children: <Widget>[
-          Image.network(concert.imagenGrupo),
-          ListTile(
-            title: Text(concert.nombreGrupo),
-          ),
-        ],
+    return Container(
+      child: StreamBuilder(
+        stream: db.getConciertos(),
+        builder: (context, AsyncSnapshot<List<Concierto>> snapshot){
+          List<Concierto> conc = snapshot.data;
+          return Column(
+            children: <Widget>[
+              Text("Nombre escenario"),
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (context, index){
+                        return Divider(
+                          color: Colors.grey,
+                          );
+                      },
+                      itemCount: conc.length,
+                      itemBuilder: (context, index){
+                        return Card(
+                            child: ListTile(
+                            leading: Image.network(
+                              conc[index].imagenGrupo,
+                              height: 70,
+                              width: 70,
+                            ), 
+                            title: Text(conc[index].nombreGrupo), 
+                            subtitle: Text(conc[index].horaInicio + " - " + conc[index].horaFinal),
+                            trailing: Icon(
+                              Icons.star,
+                              color: Colors.red,                              
+                            ),
+                            onTap: (){
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Conciertos()),
+                              );
+                            },
+                            isThreeLine: true,
+                          ),
+                          color: Colors.yellow,
+                        );
+                      },
+                    ),
+                    /*Icon(
+                      Icons.calendar_view_day
+                    )*/
+                  ],
+                ),
+              ),
+            ],
+          );
+        }
       ),
     );
   }

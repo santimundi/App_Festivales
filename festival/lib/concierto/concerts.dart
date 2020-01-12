@@ -23,7 +23,7 @@ class DiaStage extends StatelessWidget {
             padding: const EdgeInsets.only(left:55.0, right: 10),
             child: Text(
                 "Hola",
-                //blue.conciertosStage[1].dia,
+                //conciertos.dia,
                 style: TextStyle(fontSize: 30),
             ),
           ),
@@ -68,7 +68,9 @@ class ListConcerts extends StatelessWidget {
                     title: Text(conciertos[index].nombreGrupo), 
                     subtitle: Text(conciertos[index].horaInicio + " - " + conciertos[index].horaFinal),
                     trailing: Icon(
-                      Icons.star
+                      Icons.star,
+                      color: Colors.red,
+                      
                     ),
                     onTap: (){
                       Navigator.push(
