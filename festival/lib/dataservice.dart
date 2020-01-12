@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'concierto/concierto.dart';
 
 Stream<List<Concierto>> getConciertos(){
-  return Firestore.instance.collection('concierto').snapshots().map(toConciertoList);
+  return Firestore.instance.collection('Concierto').snapshots().map(toConciertoList);
 }
 
 /*

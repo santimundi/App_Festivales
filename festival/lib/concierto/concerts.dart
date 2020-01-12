@@ -45,26 +45,6 @@ class ListConcerts extends StatelessWidget {
     return StreamBuilder(
       stream: db.getConciertos(),
       builder: (context, AsyncSnapshot<List<Concierto>> snapshot){
-        if(snapshot.hasError){
-          return Center(
-            child: Text(
-              snapshot.error.toString(),
-              style: TextStyle(
-                backgroundColor: Colors.red,
-              ),
-            ),
-          );
-        }
-        if(!snapshot.hasData){
-          return Center(
-            child: Text(
-              "No hay datos",
-              style: TextStyle(
-                fontSize: 50,
-              ),
-            ),
-          );
-        }
         List<Concierto> conciertos = snapshot.data;
         return Expanded(
           child: ListView.builder(
@@ -72,7 +52,7 @@ class ListConcerts extends StatelessWidget {
             itemCount: conciertos.length,
             itemBuilder: (context, index){
               return ListTile(
-                //leading: Image.network(docs[index].imageUrl), 
+                leading: Image.network(conciertos[index].imagenGrupo), 
                 title: Text(conciertos[index].dia), 
               );
             },
