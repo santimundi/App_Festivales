@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festival/concierto/concierto.dart';
+import 'package:festival/grupo/infoGroup.dart';
 import 'package:flutter/material.dart';
 import 'package:festival/dataservice.dart' as db;
 
@@ -42,23 +43,48 @@ class DiaStage extends StatelessWidget {
 class ListConcerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: db.getConciertos(),
-      builder: (context, AsyncSnapshot<List<Concierto>> snapshot){
-        List<Concierto> conciertos = snapshot.data;
-        return Expanded(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: conciertos.length,
-            itemBuilder: (context, index){
-              return ListTile(
-                leading: Image.network(conciertos[index].imagenGrupo), 
-                title: Text(conciertos[index].dia), 
-              );
-            },
-          ),
-        );
-      },
+    return Container(
+      child: StreamBuilder(
+        stream: db.getConciertos(),
+        builder: (context, AsyncSnapshot<List<Concierto>> snapshot){
+          List<Concierto> conciertos = snapshot.data;
+          return Expanded(
+            child: ListView.separated(
+              separatorBuilder: (context, index){
+                return Divider(
+                  color: Colors.grey,
+                  );
+              },
+              scrollDirection: Axis.vertical,
+              itemCount: conciertos.length,
+              itemBuilder: (context, index){
+                return Card(
+                    child: ListTile(
+                    leading: Image.network(
+                      conciertos[index].imagenGrupo,
+                      height: 70,
+                      width: 70,
+                    ), 
+                    title: Text(conciertos[index].nombreGrupo), 
+                    subtitle: Text(conciertos[index].horaInicio + " - " + conciertos[index].horaFinal),
+                    trailing: Icon(
+                      Icons.star
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => InfoGroup(con: conciertos[index])),
+                      );
+                    },
+                    isThreeLine: true,
+                  ),
+                  color: Colors.yellow,
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

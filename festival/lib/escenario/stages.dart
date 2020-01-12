@@ -1,5 +1,4 @@
 import 'package:festival/concierto/concierto.dart';
-import 'package:festival/grupo/grupo.dart';
 import 'package:flutter/material.dart';
 import 'escenario.dart';
 
@@ -99,7 +98,6 @@ class ListadoConciertos extends StatelessWidget {
 
 class CartaConcierto extends StatelessWidget {
   final Concierto concert;
-  final Grupo group = linkinparkgrupo;
   CartaConcierto(this.concert);
 
   @override
@@ -109,7 +107,7 @@ class CartaConcierto extends StatelessWidget {
         children: <Widget>[
           Image.network(concert.imagenGrupo),
           ListTile(
-            title: Text(group.nombreGrupo),
+            title: Text(concert.nombreGrupo),
           ),
         ],
       ),

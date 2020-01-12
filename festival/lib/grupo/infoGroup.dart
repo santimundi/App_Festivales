@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:festival/concierto/concierto.dart';
-import 'grupo.dart';
 
 class InfoGroup extends StatelessWidget {
-  //final Concierto concierto = gunsNRosesconcierto;
-  final Grupo grupo = gunsNRosesgrupo;
-
+   Concierto con;
+   InfoGroup({Key key, @required this.con}) : super(key: key);
    @override
    Widget build(BuildContext context){
      return MaterialApp(
@@ -15,8 +13,8 @@ class InfoGroup extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Iconos(),
-              Foto(grupo.imagenGrupo),
-              //Informacion(grupo, concierto),
+              Foto(con.imagenGrupo),
+              Informacion(concierto: con,),
               //Pie();
             ],
           )
@@ -78,8 +76,6 @@ class _FotoState extends State<Foto> {
       height: 275,
       width: MediaQuery.of(context).size.width,
       child: Image.network(
-        //this.grupo.imagenGrupo,
-        //mirar como coger el link de una variable
         widget.imagenGrupo,
         fit: BoxFit.cover,
       )   
@@ -88,10 +84,8 @@ class _FotoState extends State<Foto> {
 }
 
 class Informacion extends StatelessWidget {
-  final Grupo grupo;
-  final Concierto concierto;
-
-  Informacion(this.grupo, this.concierto);
+  Concierto concierto;
+  Informacion({Key key, @required this.concierto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +102,7 @@ class Informacion extends StatelessWidget {
             children: <Widget>[
               Text('Artista:', style: textStyle),
               SizedBox(width: 20),
-              Text(this.grupo.nombreGrupo, style: textStyle),
+              Text(concierto.nombreGrupo, style: textStyle),
             ],
           ),
           Row(
@@ -116,7 +110,7 @@ class Informacion extends StatelessWidget {
             children: <Widget>[
               Text('Escenario:', style: textStyle),
               SizedBox(width: 20),
-              Text(this.concierto.escenario, style: textStyle),
+              Text(concierto.escenario, style: textStyle),
             ],
           ),
           Row(
@@ -124,7 +118,7 @@ class Informacion extends StatelessWidget {
             children: <Widget>[
               Text('Dia:', style: textStyle),
               SizedBox(width: 20),
-              Text(this.concierto.dia, style: textStyle),
+              Text(concierto.dia, style: textStyle),
             ],
           ),
           Row(
@@ -132,7 +126,7 @@ class Informacion extends StatelessWidget {
             children: <Widget>[
               Text('Hora inicio:', style: textStyle),
               SizedBox(width: 20),
-              Text(this.concierto.horaInicio, style: textStyle),
+              Text(concierto.horaInicio, style: textStyle),
             ],
           ),
           Row(
@@ -140,7 +134,7 @@ class Informacion extends StatelessWidget {
             children: <Widget>[
               Text('Hora fin:', style: textStyle),
               SizedBox(width: 20),
-              Text(this.concierto.horaFinal, style: textStyle),
+              Text(concierto.horaFinal, style: textStyle),
             ],
           ),
           Row(

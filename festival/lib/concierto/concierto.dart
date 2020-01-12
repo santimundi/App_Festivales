@@ -3,28 +3,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Concierto{
   String id, imagenGrupo, escenario;
   String dia, horaInicio, horaFinal; //DateTime, mirar como asignarla
-  int codigoIDConcierto, codigoIDGrupo;
+  int codigoIDGrupo;
+  String nombreGrupo, descripcionGrupo, anoFundadoGrupo;
+  //List<String> productos, integrantesGrupo;
 
   Concierto({
     this.id,
-    this.codigoIDConcierto,
     this.codigoIDGrupo,
+    this.nombreGrupo,
     this.imagenGrupo,
     this.dia,
     this.horaInicio,
     this.horaFinal,
     this.escenario,
+    this.descripcionGrupo, 
+    this.anoFundadoGrupo, 
+    //this.integrantesGrupo, 
+    //this.productos, 
   });
 
   Concierto.fromFirestore(DocumentSnapshot doc)
     : id = doc.documentID,
-      codigoIDConcierto = doc.data['codigoIDConcierto'],
       codigoIDGrupo = doc.data['codigoIDGrupo'],
+      nombreGrupo = doc.data['nombreGrupo'],
       imagenGrupo = doc.data['imagenGrupo'],
       dia = doc.data['dia'],
       horaInicio = doc.data['horaInicio'],
       horaFinal = doc.data['horaFinal'],
-      escenario = doc.data['escenario'];
+      escenario = doc.data['Escenario'],
+      descripcionGrupo = doc.data['descripcionGrupo'],
+      anoFundadoGrupo = doc.data['anoFundadoGrupo'];
 }
 
 List<Concierto> toConciertoList(QuerySnapshot query){
