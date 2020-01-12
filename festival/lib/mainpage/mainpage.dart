@@ -27,7 +27,7 @@ class Mainpage extends StatelessWidget {
             icon: Icon(Icons.calendar_today), 
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.music_note), 
+            icon: Icon(Icons.music_video), 
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart), 
