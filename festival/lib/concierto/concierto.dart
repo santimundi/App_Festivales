@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Concierto{
-  String codigoIDConcierto, codigoIDGrupo, imagenGrupo, escenario;
+  String id, imagenGrupo, escenario;
   String dia, horaInicio, horaFinal; //DateTime, mirar como asignarla
+  int codigoIDConcierto, codigoIDGrupo;
 
   Concierto({
+    this.id,
     this.codigoIDConcierto,
     this.codigoIDGrupo,
     this.imagenGrupo,
@@ -11,8 +15,23 @@ class Concierto{
     this.horaFinal,
     this.escenario,
   });
+
+  Concierto.fromFirestore(DocumentSnapshot doc)
+    : id = doc.documentID,
+      codigoIDConcierto = doc.data['codigoIDConcierto'],
+      codigoIDGrupo = doc.data['codigoIDGrupo'],
+      imagenGrupo = doc.data['imagenGrupo'],
+      dia = doc.data['dia'],
+      horaInicio = doc.data['horaInicio'],
+      horaFinal = doc.data['horaFinal'],
+      escenario = doc.data['escenario'];
 }
 
+List<Concierto> toConciertoList(QuerySnapshot query){
+  return query.documents.map((doc) => Concierto.fromFirestore(doc)).toList();
+}
+
+/*
 final linkinparkconcierto = Concierto(
   codigoIDConcierto: '000',
   codigoIDGrupo: '000',
@@ -41,4 +60,4 @@ final beatles = Concierto(
   horaInicio: '22:20',
   horaFinal: '23:00',
   escenario: 'Blue',
-);
+);*/

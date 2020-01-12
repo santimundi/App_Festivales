@@ -1,5 +1,7 @@
-import 'package:festival/escenario/escenario.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:festival/concierto/concierto.dart';
 import 'package:flutter/material.dart';
+import 'package:festival/dataservice.dart' as db;
 
 
 class DiaStage extends StatelessWidget {
@@ -19,7 +21,8 @@ class DiaStage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left:55.0, right: 10),
             child: Text(
-                blue.conciertosStage[1].dia,
+                "Hola",
+                //blue.conciertosStage[1].dia,
                 style: TextStyle(fontSize: 30),
             ),
           ),
@@ -35,27 +38,50 @@ class DiaStage extends StatelessWidget {
     );
   }
 }
-/*
-class Listgroups extends StatefulWidget {
-  @override
-  _ListgroupsState createState() => _ListgroupsState();
-}
 
-class _ListgroupsState extends State<Listgroups> {
+class ListConcerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemCount: .length,
-        itemBuilder: (context, index) {
-        return ListTile(
-          leading: Image.network(wonders[index].imageUrl), 
-          title: Text(wonders[index].name), 
-          subtitle: Text(wonders[index].country),);
+    return StreamBuilder(
+      stream: db.getConciertos(),
+      builder: (context, AsyncSnapshot<List<Concierto>> snapshot){
+        if(snapshot.hasError){
+          return Center(
+            child: Text(
+              snapshot.error.toString(),
+              style: TextStyle(
+                backgroundColor: Colors.red,
+              ),
+            ),
+          );
+        }
+        if(!snapshot.hasData){
+          return Center(
+            child: Text(
+              "No hay datos",
+              style: TextStyle(
+                fontSize: 50,
+              ),
+            ),
+          );
+        }
+        List<Concierto> conciertos = snapshot.data;
+        return Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: conciertos.length,
+            itemBuilder: (context, index){
+              return ListTile(
+                //leading: Image.network(docs[index].imageUrl), 
+                title: Text(conciertos[index].dia), 
+              );
+            },
+          ),
+        );
       },
     );
   }
-}*/
+}
 
 class Conciertos extends StatefulWidget {
   @override
@@ -72,7 +98,9 @@ class _ConciertosState extends State<Conciertos> {
           child: Column(
             children: <Widget>[
               DiaStage(),
-              //Listgroups(),
+              SizedBox(height: 20,),
+              ListConcerts(),
+              
             ],
           )
         ),

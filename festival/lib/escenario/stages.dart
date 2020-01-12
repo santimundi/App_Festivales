@@ -61,7 +61,8 @@ class _DiaState extends State<Dia> {
           Padding(
             padding: const EdgeInsets.only(left:55.0, right: 10),
             child: Text(
-                blue.conciertosStage[1].dia,
+                "Hola",
+                //blue.conciertosStage[1].dia,
                 style: TextStyle(fontSize: 30),
             ),
           ),
@@ -79,7 +80,7 @@ class _DiaState extends State<Dia> {
 }
 
 class ListadoConciertos extends StatelessWidget {
-  final List<Stage> escenarios = [blue];
+  final List<Stage> escenarios = [];
 
   @override
   Widget build(BuildContext context) {
