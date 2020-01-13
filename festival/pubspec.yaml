@@ -17,6 +17,7 @@ dependencies:
 =======
 >>>>>>> c34232149c8924941ce373efcdc210f117a443ed
   cloud_firestore: ^0.12.10+2
+  carousel_slider: ^1.3.0
 
 dev_dependencies:
   flutter_test:

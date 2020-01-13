@@ -6,7 +6,7 @@ import 'concierto/concierto.dart';
 >>>>>>> c34232149c8924941ce373efcdc210f117a443ed:festival/lib/dataservice.dart
 
 Stream<List<Concierto>> getConciertos(){
-  return Firestore.instance.collection('concierto').snapshots().map(toConciertoList);
+  return Firestore.instance.collection('Concierto').snapshots().map(toConciertoList);
 }
 
 /*
