@@ -1,5 +1,6 @@
 import 'package:festival/concierto/concierto.dart';
 import 'package:festival/concierto/concerts.dart';
+import 'package:festival/dia/dia.dart';
 import 'package:flutter/material.dart';
 import 'escenario.dart';
 import 'package:festival/dataservice.dart' as db;
@@ -40,7 +41,7 @@ class Iconos extends StatelessWidget {
   }
 }
 
-class Dia extends StatefulWidget {
+/*class Dia extends StatefulWidget {
   @override
   _DiaState createState() => _DiaState();
 }
@@ -78,25 +79,27 @@ class _DiaState extends State<Dia> {
       ),
     );
   }
-}
+}*/
 
 class ListadoConciertos extends StatelessWidget {
-  final List<Stage> escenarios = [];
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Color.fromRGBO(255, 255, 102, 0.9),
       height: 100,
       child: Row(
-        children: <Widget>[      
-          CartaConcierto(),
+        children: <Widget>[    
+          Text("hola"),  
+          //CartaConcierto(),
         ],
       ),
     );
   }
 }
 
+
+/*
 class CartaConcierto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -157,9 +160,12 @@ class CartaConcierto extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class Stages extends StatefulWidget {
+  final Dia numPag;
+  Stages({Key key, @required this.numPag}) : super(key: key);
+
   @override
   _StagesState createState() => _StagesState();
 }
@@ -174,7 +180,7 @@ class _StagesState extends State<Stages> {
           child: Column(
             children: <Widget>[
               Iconos(),
-              Dia(),
+              //Dia(),
               SizedBox(height: 10,),
               ListadoConciertos(),
             ],

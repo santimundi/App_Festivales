@@ -39,7 +39,7 @@ class DiaStage extends StatelessWidget {
     );
   }
 }
-
+/*
 class ListConcerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class ListConcerts extends StatelessWidget {
       ),
     );
   }
-}
+*/
 
 class Conciertos extends StatefulWidget {
   @override
@@ -107,7 +107,7 @@ class _ConciertosState extends State<Conciertos> {
             children: <Widget>[
               DiaStage(),
               SizedBox(height: 20,),
-              ListConcerts(),
+              //ListConcerts(),
               
             ],
           )

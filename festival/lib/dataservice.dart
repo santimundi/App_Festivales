@@ -1,8 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:festival/dia/dia.dart';
+import 'package:festival/escenario/escenario.dart';
 import 'concierto/concierto.dart';
 
-Stream<List<Concierto>> getConciertos(){
-  return Firestore.instance.collection('Concierto').snapshots().map(toConciertoList);
+Stream<List<Dia>> getDias() {
+  return Firestore.instance.collection('Dia').snapshots().map(toDiaList);
+}
+
+Stream<List<Stage>> getStage(String groupID) {
+  return Firestore.instance
+      .collection('Dia/$groupID/Escenario')
+      .snapshots()
+      .map(toStageList);
 }
 
 /*
