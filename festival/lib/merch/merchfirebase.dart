@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'merchandising.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 
 class Merch extends StatefulWidget {
@@ -12,17 +13,6 @@ class Merch extends StatefulWidget {
 }
 
 class _MerchState extends State<Merch> {
-  List<Merchandising> _merch;
-
-  @override
-  void initState() {
-    _merch = [
-      Merchandising(),
-      Merchandising(),
-      Merchandising(),
-    ];
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,23 +41,18 @@ class _MerchState extends State<Merch> {
             )
           ],
         ),
-        body: ListView(
-          children: <Widget>[
-            product(
-              //precio: _merch[0].precio,
-              //descripcion: _merch[0].descripcion,
-              //imagenMerchandising: _merch[0].imagenMerchandising,
-              //unidades: _merch[0].unidades,
-              //tallasrestantes: _merch[0].tallasrestantes
-            ),
-            product(),
-            product(),
-            product(),
-            product(),
-            product(),
-            product(),
-          ],
-        ),
+        body: StreamBuilder(
+          stream: Firestore.instance.collection('Merchandising').snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return const Text('Loading...');
+            return ListView.builder(
+              itemExtent: 100,
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (context,index) => _product(context,snapshot.data.documents[index]),
+            );
+          } 
+        ), 
+          
         bottomNavigationBar: BottomAppBar(
           color: Color.fromRGBO(243, 156, 18, 1),
           child: Row(
@@ -106,7 +91,7 @@ class _MerchState extends State<Merch> {
     );
   }
 
-  Widget product() {
+  Widget _product(BuildContext context, DocumentSnapshot document) {
     return Card( 
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -115,7 +100,7 @@ class _MerchState extends State<Merch> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Image.network(
-                  'https://picsum.photos/250?image=9', 
+                  document['imagenMerchandising'], 
                   height: 65,
                   width:65
                   ),
@@ -125,16 +110,16 @@ class _MerchState extends State<Merch> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'GunsnRoses T-shirt',
+                      document['descripcion'],
                       style: TextStyle(fontSize: 20),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Available:10',
+                      'Available: ' + document['unidades'],
                       style: TextStyle(fontSize: 15),
                     ),
                     Text(
-                      'Sizes: M,L,XL',
+                      'Sizes: ' + document['tallasrestantes'],
                       style: TextStyle(fontSize: 15),
                     ),
                   ]
@@ -142,7 +127,7 @@ class _MerchState extends State<Merch> {
                 ),
                 
                 Text(
-                  '19.95€',
+                  document['precio'].toString(),
                   textAlign: TextAlign.end,
                   style: TextStyle(fontSize: 12),
                 ),
