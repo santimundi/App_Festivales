@@ -19,7 +19,7 @@ class Mainpage extends StatelessWidget {
       ),
       body: Container(
         color: Color.fromRGBO(243, 156, 18, 1),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             Reloj(),
             Noticias(),
@@ -137,32 +137,6 @@ class _RelojState extends State<Reloj> {
   }
 }
 
-/*class Noticias extends StatefulWidget {
-  @override
-  _NoticiasState createState() => _NoticiasState();
-}
-
-class _NoticiasState extends State<Noticias> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      
-    );
-  }
-}*/
-
-/*class Noticias extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index){
-        return Text('Item $index');
-      },
-      itemCount: 100,
-    );
-  }
-}*/
-
 class Noticias extends StatelessWidget {
 
     final List<String> newsnews = [
@@ -186,7 +160,7 @@ class Noticias extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: Text(
-              'Esto es una noticia de 0 interes, todo lo que tiene es que es un maravilloso ejemplo',
+              newsnews.join('\n'),
               textAlign: TextAlign.left,
           ),
         ),
