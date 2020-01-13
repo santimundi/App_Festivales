@@ -12,12 +12,10 @@ dependencies:
     sdk: flutter
 
   path_provider: ^1.4.0
-<<<<<<< HEAD
-  cupertino_icons: ^0.1.2
-=======
->>>>>>> c34232149c8924941ce373efcdc210f117a443ed
-  cloud_firestore: ^0.12.10+2
+  cloud_firestore: ^0.12.11
   carousel_slider: ^1.3.0
+  cupertino_icons: ^0.1.2
+
 
 dev_dependencies:
   flutter_test:

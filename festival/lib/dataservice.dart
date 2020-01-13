@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-<<<<<<< HEAD:festival/lib/concierto/dataservice.dart
+import 'package:festival/concierto/concerts.dart';
 //import 'package:flutter/cupertino.dart';
-=======
-import 'concierto/concierto.dart';
->>>>>>> c34232149c8924941ce373efcdc210f117a443ed:festival/lib/dataservice.dart
 
-Stream<List<Concierto>> getConciertos(){
+Stream<List<Conciertos>> getConciertos(){
   return Firestore.instance.collection('Concierto').snapshots().map(toConciertoList);
 }
 
