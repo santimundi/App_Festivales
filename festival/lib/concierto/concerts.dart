@@ -147,7 +147,7 @@ class ListConcerts extends StatelessWidget {
                     onTap: (){
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => InfoGroup(con: conciertos[index])),
+                      MaterialPageRoute(builder: (context) => InfoGroup(/*con: conciertos[index]*/)),
                       );
                     },
                     isThreeLine: true,

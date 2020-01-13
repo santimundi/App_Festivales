@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'concierto.dart';
-import 'grupo.dart';
+import 'package:festival/concierto/concierto.dart';
+//import 'grupo.dart';
 
 class InfoGroup extends StatelessWidget {
-  final Concierto concierto = linkinparkconcierto;
-  final Grupo grupo = linkinparkgrupo;
+  //final Concierto concierto = linkinparkconcierto;
+  //final Grupo grupo = linkinparkgrupo;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class InfoGroup extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 //Iconos(),
-                Foto(grupo),
+                Foto(/*grupo*/),
                 Informacion(/*concierto, grupo*/),
                 //NavBar()
               ],
@@ -115,9 +115,9 @@ class Iconos extends StatelessWidget {
 }
 */
 class Foto extends StatelessWidget {
-  final Grupo grupo;
+  //final Grupo grupo;
 
-  Foto(this.grupo);
+  //Foto(this.grupo);
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +251,7 @@ class Informacion extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                  ),
+                  ), 
                   Padding(
                     padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
                     child: Text(
