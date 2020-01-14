@@ -84,8 +84,7 @@ class _DiasState extends State<Dias> {
             'Days',
             style: TextStyle(color: Colors.black),
           ),
-          //backgroundColor: Color.fromRGBO(243, 156, 18, 1),
-          backgroundColor: Colors.yellow,
+          backgroundColor: Color.fromRGBO(243, 156, 18, 1),
           centerTitle: true,
           automaticallyImplyLeading: true,
           leading: IconButton(
@@ -123,8 +122,7 @@ class _DiasState extends State<Dias> {
           },
         ),
         bottomNavigationBar: BottomAppBar(
-          //color: Color.fromRGBO(243, 156, 18, 1),
-          color: Colors.yellow,
+          color: Color.fromRGBO(243, 156, 18, 1),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -159,8 +157,7 @@ class _DiasState extends State<Dias> {
             ],
           ),
         ),
-        //backgroundColor: Color.fromRGBO(243, 156, 18, 1),
-        backgroundColor: Colors.yellow,
+        backgroundColor: Color.fromRGBO(243, 156, 18, 1),
       ),
     );
   }
