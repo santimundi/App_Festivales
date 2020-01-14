@@ -88,21 +88,25 @@ class _RelojState extends State<Reloj> {
   var dateFest = new DateTime.utc(2020, 8, 20, 20, 20);
   DateTime _now;
 
+  static const duration = const Duration();
+  bool isActive=false;
+  Timer timer;
+
   _daysTime(DateTime _now) {
-    Duration difference = dateFest.difference(DateTime.now());
-    //Duration difference = dateFest.difference(_now);
+    //Duration difference = dateFest.difference(DateTime.now());
+    Duration difference = dateFest.difference(_now);
     return "${difference.inDays}";
   }
 
   _hoursTime(DateTime _now) {
-    Duration difference = dateFest.difference(DateTime.now());
-    //Duration difference = dateFest.difference(_now);
+    //Duration difference = dateFest.difference(DateTime.now());
+    Duration difference = dateFest.difference(_now);
     return "${difference.inHours - (difference.inDays * 24)}";
   }
 
   _minutesTime(_now) {
-    Duration difference = dateFest.difference(DateTime.now());
-    //Duration difference = dateFest.difference(_now);
+    //Duration difference = dateFest.difference(DateTime.now());
+    Duration difference = dateFest.difference(_now);
     return "${difference.inMinutes - (difference.inHours * 60)}";
   }
 
@@ -117,19 +121,21 @@ class _RelojState extends State<Reloj> {
     fontSize: 20,
   );
 
-  @override
-  void initState() {
-    super.initState();
-    Timer.periodic(Duration(seconds: 1), (v) {
+  void handleTick(){
+    if(isActive){
       setState(() {
         _now = DateTime.now();
       });
-    });
-    //_now = DateTime.now();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if(timer == null){
+      timer = Timer.periodic(duration, (Timer t){
+        handleTick();
+      });
+    }
     return Container(
       child: Center(
         child: Column(
@@ -179,11 +185,9 @@ class _RelojState extends State<Reloj> {
 
 class Noticias extends StatelessWidget {
   final List<String> newsnews = [
-    'Red',
-    'Blue',
-    'Gren',
-    'Purple',
-    'Black',
+    '- Para la celebración del decimoquinto cumpleaños del festival, todos los asistentes tendrán una camiseta de recuerdo.',
+    '- Ya tenemos todos los horarios publicados, ¿ya sabéis quien iréis a ver?',
+    '- No os olvidéis que para esta edición hemos cambiado de localización, este año estamos en el Parc de la Serra de Mollerussa.',
   ];
 
   @override
