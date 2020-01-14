@@ -111,23 +111,23 @@ class _MerchState extends State<Merch> {
                   children: <Widget>[
                     Text(
                       document['descripcion'],
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Text(
                       'Available: ' + document['unidades'],
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 12),
                     ),
                     Text(
                       'Sizes: ' + document['tallasrestantes'],
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 12),
                     ),
                   ]
                  
                 ),
                 
                 Text(
-                  document['precio'].toString(),
+                  document['precio'].toString() + '€',
                   textAlign: TextAlign.end,
                   style: TextStyle(fontSize: 12),
                 ),
