@@ -1,3 +1,4 @@
+import 'package:festival/calendario/calendario.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -7,26 +8,37 @@ class Mainpage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          title: const Text(
+            'News',
+            style: TextStyle(color: Colors.black),
+          ),
           backgroundColor: Color.fromRGBO(243, 156, 18, 1),
           centerTitle: true,
-          title: Text('News'),
+          automaticallyImplyLeading: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.black,
+            onPressed: () => Navigator.pop(context, false),
+          ),
           actions: <Widget>[
-            Icon( 
-              Icons.notifications,
-              color: Colors.black,
-              size: 35,
-            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed('/notifications'),
+            )
           ],
         ),
         body: Container(
-          color: Color.fromRGBO(243, 156, 18, 1),
-          child: ListView(
-            children: <Widget>[
-              Reloj(),
-              Noticias(),
-            ],
-          ),
-        ),
+            color: Color.fromRGBO(243, 156, 18, 1),
+            child: Column(
+              children: <Widget>[
+                Reloj(),
+                Noticias(),
+              ],
+            )),
         bottomNavigationBar: BottomAppBar(
           color: Color.fromRGBO(243, 156, 18, 1),
           child: Row(
@@ -49,15 +61,14 @@ class Mainpage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.music_note),
                 iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+                onPressed: () => Navigator.of(context).pushNamed('/days'),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: IconButton(
                   icon: Icon(Icons.shopping_cart),
                   iconSize: 28.0,
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/merchandising'),
+                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
                 ),
               ),
             ],
