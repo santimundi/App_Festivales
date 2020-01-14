@@ -5,6 +5,7 @@ class Concierto{
   String dia, horaInicio, horaFinal; //DateTime, mirar como asignarla
   int codigoIDGrupo;
   String nombreGrupo, descripcionGrupo, anoFundadoGrupo;
+  bool favorito;
   //List<String> productos, integrantesGrupo;
 
   Concierto({
@@ -18,6 +19,7 @@ class Concierto{
     this.escenario,
     this.descripcionGrupo, 
     this.anoFundadoGrupo, 
+    this.favorito
     //this.integrantesGrupo, 
     //this.productos, 
   });
@@ -32,7 +34,8 @@ class Concierto{
       horaFinal = doc.data['horaFinal'],
       escenario = doc.data['Escenario'],
       descripcionGrupo = doc.data['descripcionGrupo'],
-      anoFundadoGrupo = doc.data['anoFundadoGrupo'];
+      anoFundadoGrupo = doc.data['anoFundadoGrupo'],
+      favorito = doc.data['favoritos'];
 }
 
 List<Concierto> toConciertoList(QuerySnapshot query){

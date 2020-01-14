@@ -1,11 +1,9 @@
-import 'package:festival/concierto/concerts.dart';
-import 'package:festival/concierto/concierto.dart';
-import 'package:festival/escenario/stages.dart';
+import 'package:festival/dia/day.dart';
+import 'package:festival/dia/dia.dart';
 import 'package:flutter/material.dart';
-import 'package:festival/grupo/infoGroup.dart';
 
 void main(){
-  runApp(Conciertos());
+  runApp(Dias());
 }
 
 

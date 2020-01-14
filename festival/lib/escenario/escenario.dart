@@ -1,19 +1,18 @@
-import 'package:festival/concierto/concierto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Stage{
   String codigoIDStage, nombreStage;
-  List<Concierto> conciertosStage;
 
   Stage({
     this.codigoIDStage, 
     this.nombreStage,
-    this.conciertosStage,
   });
+
+  Stage.fromFirestore(DocumentSnapshot doc)
+    : codigoIDStage = doc.documentID,
+      nombreStage = doc.data['Nombre_Escenario'];
 }
-/*
-final blue = Stage(
-  codigoIDStage: '000',
-  nombreStage: 'blue',
-  conciertosStage: [linkinparkconcierto, gunsNRosesconcierto]
-);
-*/
+
+List<Stage> toStageList(QuerySnapshot query){
+  return query.documents.map((doc) => Stage.fromFirestore(doc)).toList();
+}

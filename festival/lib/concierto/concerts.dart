@@ -1,3 +1,4 @@
+/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festival/concierto/concierto.dart';
 import 'package:festival/grupo/infoGroup.dart';
@@ -7,37 +8,6 @@ import 'package:festival/dataservice.dart' as db;
 
 class DiaStage extends StatelessWidget {
   @override
-  /*Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromRGBO(255, 255, 102, 0.9),
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.arrow_left,
-              size: 50,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left:55.0, right: 10),
-            child: Text(
-                "Hola",
-                //blue.conciertosStage[1].dia,
-                style: TextStyle(fontSize: 30),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0, left: 40),
-            child: Icon(
-              Icons.arrow_right,
-              size: 50,
-            ),
-          )
-        ],
-      ),
-    );
-  }*/
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -142,7 +112,9 @@ class ListConcerts extends StatelessWidget {
                     title: Text(conciertos[index].nombreGrupo), 
                     subtitle: Text(conciertos[index].horaInicio + " - " + conciertos[index].horaFinal),
                     trailing: Icon(
-                      Icons.star
+                      Icons.star,
+                      color: Colors.red,
+                      
                     ),
                     onTap: (){
                       Navigator.push(
@@ -162,7 +134,7 @@ class ListConcerts extends StatelessWidget {
     );
   }
 }
-/*
+
 class Conciertos extends StatefulWidget {
   @override
   _ConciertosState createState() => _ConciertosState();
@@ -179,6 +151,7 @@ class _ConciertosState extends State<Conciertos> {
             children: <Widget>[
               DiaStage(),
               SizedBox(height: 20,),
+              //ListConcerts(),
               ListConcerts(),
             ],
           )
@@ -186,5 +159,4 @@ class _ConciertosState extends State<Conciertos> {
       ),
     );
   }
-}
-*/
+}*/

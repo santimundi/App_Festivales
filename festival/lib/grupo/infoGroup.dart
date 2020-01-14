@@ -3,9 +3,6 @@ import 'package:festival/concierto/concierto.dart';
 //import 'grupo.dart';
 
 class InfoGroup extends StatelessWidget {
-  //final Concierto concierto = linkinparkconcierto;
-  //final Grupo grupo = linkinparkgrupo;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
