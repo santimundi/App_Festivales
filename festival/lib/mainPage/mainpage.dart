@@ -179,10 +179,10 @@ class _RelojState extends State<Reloj> {
 
 class Noticias extends StatelessWidget {
   final List<String> newsnews = [
-    'Red',
-    'Blue',
-    'Gren',
-    'Purple',
+    '- Para la celebración del decimoquinto cumpleaños del festival, todos los asistentes tendrán una camiseta de recuerdo. \n',
+    '- Ya tenemos todos los horarios publicados, ¿ya sabéis quien iréis a ver?\n',
+    '- No os olvidéis que para esta edición hemos cambiado de localización, este año estamos en el Parc de la Serra de Mollerussa\n',
+    '- Parece que de momento la previsión metereológica para los días del festival será favorable. Tendremos sol gran parte del día con algunas nubes durante la tarde del segundo día.',
     'Black',
   ];
 

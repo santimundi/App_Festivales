@@ -1,6 +1,7 @@
 import 'package:festival/concierto/concierto.dart';
 import 'package:festival/concierto/concerts.dart';
 import 'package:festival/dia/dia.dart';
+import 'package:festival/grupo/infoGroup.dart';
 import 'package:festival/mainPage/mainpagesinappbar.dart';
 import 'package:flutter/material.dart';
 import 'escenario.dart';
@@ -132,7 +133,7 @@ class _StagesState extends State<Stages> {
                               child: Card(
                                 child: Container(
                                   color: Colors.lime,
-                                  height: 150,
+                                  height: 350,
                                   width: 300.0,
                                   child: Column(
                                     crossAxisAlignment:
@@ -147,25 +148,17 @@ class _StagesState extends State<Stages> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Padding(
-<<<<<<< HEAD
                                         padding: const EdgeInsets.all(8.0),
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
-                                            CartaConcierto(
+                                            CartasConcierto(
                                               idEsc: listaEscenarios[position].nombreStage,
                                               numDia: widget.numPag)
                                           ],
                                         ),
-                                      ),
-=======
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: CartasConcierto(
-                                              idEsc: listaEscenarios[position]
-                                                  .nombreStage,
-                                              numDia: widget.numPag)),
->>>>>>> 04bb6506d5090dba46b25c476ddf47b7e86f223d
+                                      )
                                     ],
                                   ),
                                 ),
@@ -212,47 +205,6 @@ class _DiaState extends State<DiaConcierto> {
     );
   }
 }
-/*
-class ListadoConciertos extends StatefulWidget {
-  @override
-  _ListadoConciertosState createState() => _ListadoConciertosState();
-}
-
-class _ListadoConciertosState extends State<ListadoConciertos> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromRGBO(255, 255, 102, 0.9),
-      height: 100,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed("/concert");
-            },
-            child: Text(
-              "STAGE 1",
-              style: TextStyle(fontSize: 30),
-            ),
-          ),
-          Row(
-            children: <Widget>[
-              GestureDetector(
-                onLongPress: () {
-                  Navigator.of(context).pushNamed("/concert");
-                },
-                child: CartasConcierto(
-                    //escenarios[0].conciertosStage[0],
-                    ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}*/
 
 class CartasConcierto extends StatefulWidget {
   final String idEsc, numDia;
@@ -265,7 +217,7 @@ class _CartasConciertoState extends State<CartasConcierto> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 200,
         child: StreamBuilder(
           stream: db.getConciertos(widget.numDia, widget.idEsc),
           builder: (context, AsyncSnapshot<List<Concierto>> snapshot) {
@@ -285,39 +237,36 @@ class _CartasConciertoState extends State<CartasConcierto> {
             return ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-
-              /*separatorBuilder: (context, index) {
-                  return Divider(
-                    color: Colors.grey,
-                  );
-                },*/
               itemCount: conc.length,
               itemBuilder: (BuildContext context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(5),
                   child:new SizedBox(
-                   child: ListTile(
-                      leading: Image.network(
-                        conc[index].imagenGrupo,
-                        height: 10,
-                        width: 10,
-                      ),
-                      title: Text(conc[index].nombreGrupo),
-                      subtitle: Text(
+                   child: Container(
+                     height: 80,
+                     child: ListTile(
+                        leading: Image.network(
+                          conc[index].imagenGrupo,
+                          height: 10,
+                          width: 10,
+                        ),
+                        title: Text(conc[index].nombreGrupo),
+                        subtitle: Text(
                           conc[index].horaInicio + " - " + conc[index].horaFinal),
-                      trailing: Icon(
-                        Icons.star,
-                        color: Colors.red,
+                        trailing: Icon(
+                          Icons.star,
+                          color: Colors.red,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InfoGroup(grupConcert: conc[index])),
+                          );
+                        },
+                        //isThreeLine: true,
                       ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Conciertos()),
-                        );
-                      },
-                      //isThreeLine: true,
-                    ),
+                   ),
                     //color: Colors.yellow,
                   ),
                 );

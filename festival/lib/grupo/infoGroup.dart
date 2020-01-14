@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:festival/concierto/concierto.dart';
-//import 'grupo.dart';
 
 class InfoGroup extends StatefulWidget {
+  final Concierto grupConcert;
+  InfoGroup({Key key, this.grupConcert}) : super(key: key);
   @override
   _InfoGroupState createState() => _InfoGroupState();
 }
 
 class _InfoGroupState extends State<InfoGroup> {
-  @override
-  bool isPressed = false;
+  bool isPressed;
 
+  @override
+  void initState() {
+    isPressed = widget.grupConcert.favorito;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -42,10 +48,8 @@ class _InfoGroupState extends State<InfoGroup> {
             color: Color.fromRGBO(243, 156, 18, 1),
             child: Column(
               children: <Widget>[
-                //Iconos(),
-                Foto(/*grupo*/),
-                Informacion(/*concierto, grupo*/),
-                //NavBar()
+                Foto(widget.grupConcert.imagenGrupo),
+                Informacion(widget.grupConcert),
               ],
             )),
         bottomNavigationBar: BottomAppBar(
@@ -91,9 +95,9 @@ class _InfoGroupState extends State<InfoGroup> {
           ),
           backgroundColor: isPressed ? Colors.yellow : Colors.grey,
           onPressed: () {
-            setState(() {
+            /*setState(() {
               isPressed = !isPressed;
-            });
+            });*/
           },
         ),
       ),
@@ -101,41 +105,9 @@ class _InfoGroupState extends State<InfoGroup> {
   }
 }
 
-/*
-class Iconos extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 20),
-      child: Row(
-        children: <Widget>[
-          Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          Expanded(
-            child: Text(
-              'Información',
-              style: TextStyle(
-                fontSize: 25,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Icon(
-            Icons.notifications,
-            color: Colors.black,
-          ),
-        ],
-      ),
-    );
-  }
-}
-*/
 class Foto extends StatelessWidget {
-  //final Grupo grupo;
-
-  //Foto(this.grupo);
+  final String imagenGrupo;
+  Foto(this.imagenGrupo);
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +115,7 @@ class Foto extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Container(
-          width: 450,
+          width: 270,
           height: 270,
           decoration: BoxDecoration(
             boxShadow: [
@@ -152,10 +124,10 @@ class Foto extends StatelessWidget {
                 blurRadius: 10.0,
               )
             ],
-            /*image: DecorationImage(
-              image: AssetImage('assets/LP.jpg'),
+            image: DecorationImage(
+              image: AssetImage(imagenGrupo),
               fit: BoxFit.cover,
-            ),*/
+            ),
           ),
         ),
       ),
@@ -164,10 +136,8 @@ class Foto extends StatelessWidget {
 }
 
 class Informacion extends StatelessWidget {
-  //final Grupo grupo;
-  // final Concierto concierto;
-
-  //Informacion(this.grupo, this.concierto);
+  final Concierto concierto;
+  Informacion(this.concierto);
 
   @override
   Widget build(BuildContext context) {
@@ -192,30 +162,8 @@ class Informacion extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Text(
-                      'Genre',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
                   SizedBox(
                     height: 15,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Text(
-                      'Stage',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(4),
@@ -234,18 +182,7 @@ class Informacion extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(4),
                     child: Text(
-                      'Day',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Text(
-                      'Duration',
+                      'Description',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -256,78 +193,46 @@ class Informacion extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Artist',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
+                  child: Text(
+                    concierto.nombreGrupo,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Genre',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
+                  child: Text(
+                    "${concierto.horaFinal} - ${concierto.horaInicio}",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Stage',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Hour',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Day',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
-                    child: Text(
-                      'Duration',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
+                  child: Text(concierto.descripcionGrupo,
+                      maxLines: 2,
+                      style:
+                          Theme.of(context).primaryTextTheme.subhead.copyWith(
+                                color: Colors.black,
+                              ),
+                      overflow: TextOverflow.ellipsis),
+                ),
+              ],
             ),
           ],
         ),
