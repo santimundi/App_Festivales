@@ -3,82 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festival/dataservice.dart' as db;
 
-/*
-
-class Calendario extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Calendario',
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Color.fromRGBO(243, 156, 18, 1),
-          centerTitle: true,
-          automaticallyImplyLeading: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Colors.black,
-            onPressed: () => Navigator.pop(context, false),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.black,
-              ),
-              onPressed: () =>
-                  Navigator.of(context).pushNamed('/notifications'),
-            )
-          ],
-        ),
-        body: Container(
-            color: Color.fromRGBO(243, 156, 18, 1),
-            child: Column(
-              children: <Widget>[
-              ],
-            )),
-        bottomNavigationBar: BottomAppBar(
-          color: Color.fromRGBO(243, 156, 18, 1),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: IconButton(
-                  iconSize: 32.0,
-                  icon: Icon(Icons.home),
-                  onPressed: () => Navigator.of(context).pushNamed('/mainPage'),
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.calendar_today),
-                iconSize: 26.0,
-                onPressed: () => Navigator.of(context).pushNamed('/calendar'),
-              ),
-              IconButton(
-                icon: Icon(Icons.music_note),
-                iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/days'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  iconSize: 28.0,
-                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}*/
 class Calendario extends StatefulWidget {
   final String idEsc, numDia;
   Calendario({Key key, this.idEsc, this.numDia}) : super(key: key);
@@ -88,7 +12,7 @@ class Calendario extends StatefulWidget {
 }
 
 class _CalendarioState extends State<Calendario> {
-  Stream<List<Concierto>> listaCon;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -118,20 +42,15 @@ class _CalendarioState extends State<Calendario> {
         children: <Widget>[
           _selector(),
           StreamBuilder(
-            stream: Firestore.instance
-                .collection('Dia')
-                .where('Dia_Semana', isEqualTo: 'Miercoles')
-                //.collection('Escenario')
-                .where('favoritos')
+            stream: Firestore.instance.collection('Dia')
+                  .where('Dia_Semana', isEqualTo: 'Miercoles')
                 .snapshots(),
             builder: (context, snapshot) {
-              List<Concierto> conc = snapshot.data;
               if (!snapshot.hasData) return const Text('Loading...');
               return ListView.builder(
                 itemExtent: 100,
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (context, index) =>
-                    //listaCon = getConciertos(snapshot.data.documents[index].day, snapshot.data.documents[index].stage)
                     _product(context, snapshot.data.documents[index]),
               );
             },

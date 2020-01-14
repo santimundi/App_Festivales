@@ -81,7 +81,7 @@ class _DiasState extends State<Dias> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Dias',
+            'Days',
             style: TextStyle(color: Colors.black),
           ),
           //backgroundColor: Color.fromRGBO(243, 156, 18, 1),
