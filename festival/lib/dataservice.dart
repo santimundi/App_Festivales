@@ -14,9 +14,9 @@ Stream<List<Stage>> getStages(String stageID) {
       .map(toStageList);
 }
 
-Stream<List<Concierto>> getConciertos(String stageID, String concertID){
+Stream<List<Concierto>> getConciertos(String dayID, String stageID){
   return Firestore.instance
-      .collection('Dia/$stageID/Escenario/$concertID/Concierto')
+      .collection('Dia/$dayID/Escenario/$stageID/Concierto')
       .snapshots()
       .map(toConciertoList);
 }
