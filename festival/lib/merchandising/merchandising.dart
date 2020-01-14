@@ -55,7 +55,7 @@ class _MerchState extends State<Merch> {
           color: Color.fromRGBO(243, 156, 18, 1),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -73,7 +73,7 @@ class _MerchState extends State<Merch> {
               IconButton(
                 icon: Icon(Icons.music_note),
                 iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+                onPressed: () => Navigator.of(context).pushNamed('/days'),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
