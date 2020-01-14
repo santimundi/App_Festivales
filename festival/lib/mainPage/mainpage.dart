@@ -4,44 +4,65 @@ import 'dart:async';
 class Mainpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        centerTitle: true,
-        title: Text('News'),
-        actions: <Widget>[
-          Icon(
-            Icons.notifications,
-            color: Colors.black,
-            size: 35,
-          ),
-        ],
-      ),
-      body: Container(
-        color: Color.fromRGBO(243, 156, 18, 1),
-        child: ListView(
-          children: <Widget>[
-            Reloj(),
-            Noticias(),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(243, 156, 18, 1),
+          centerTitle: true,
+          title: Text('News'),
+          actions: <Widget>[
+            Icon( 
+              Icons.notifications,
+              color: Colors.black,
+              size: 35,
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-       
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
+        body: Container(
+          color: Color.fromRGBO(243, 156, 18, 1),
+          child: ListView(
+            children: <Widget>[
+              Reloj(),
+              Noticias(),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today), 
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Color.fromRGBO(243, 156, 18, 1),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: IconButton(
+                  iconSize: 32.0,
+                  icon: Icon(Icons.home),
+                  onPressed: () => Navigator.of(context).pushNamed('/mainPage'),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.calendar_today),
+                iconSize: 26.0,
+                onPressed: () => Navigator.of(context).pushNamed('/calendar'),
+              ),
+              IconButton(
+                icon: Icon(Icons.music_note),
+                iconSize: 29.0,
+                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: IconButton(
+                  icon: Icon(Icons.shopping_cart),
+                  iconSize: 28.0,
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/merchandising'),
+                ),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_video), 
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), 
-          )
-        ],
+        ),
       ),
     );
   }
@@ -53,26 +74,25 @@ class Reloj extends StatefulWidget {
 }
 
 class _RelojState extends State<Reloj> {
-
   var dateFest = new DateTime.utc(2020, 8, 20, 20, 20);
   DateTime _now;
 
-  _daysTime(DateTime _now){
+  _daysTime(DateTime _now) {
     Duration difference = dateFest.difference(DateTime.now());
     //Duration difference = dateFest.difference(_now);
     return "${difference.inDays}";
   }
 
-  _hoursTime(DateTime _now){
+  _hoursTime(DateTime _now) {
     Duration difference = dateFest.difference(DateTime.now());
     //Duration difference = dateFest.difference(_now);
-    return "${difference.inHours - difference.inDays*24 - 1}";
+    return "${difference.inHours - difference.inDays * 24 - 1}";
   }
 
-  _minutesTime(_now){
+  _minutesTime(_now) {
     Duration difference = dateFest.difference(DateTime.now());
     //Duration difference = dateFest.difference(_now);
-    return "${difference.inMinutes - (difference.inHours*60 - 1)}";
+    return "${difference.inMinutes - (difference.inHours * 60 - 1)}";
   }
 
   final textStyledate = TextStyle(
@@ -87,9 +107,9 @@ class _RelojState extends State<Reloj> {
   );
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (v){
+    Timer.periodic(Duration(seconds: 1), (v) {
       setState(() {
         _now = DateTime.now();
       });
@@ -115,9 +135,18 @@ class _RelojState extends State<Reloj> {
                     child: Table(
                       children: [
                         TableRow(children: [
-                          Text(_daysTime(_now), style: textStyledate,),
-                          Text(_hoursTime(_now), style: textStyledate,),
-                          Text(_minutesTime(_now), style: textStyledate,),
+                          Text(
+                            _daysTime(_now),
+                            style: textStyledate,
+                          ),
+                          Text(
+                            _hoursTime(_now),
+                            style: textStyledate,
+                          ),
+                          Text(
+                            _minutesTime(_now),
+                            style: textStyledate,
+                          ),
                         ]),
                         TableRow(children: [
                           Text("Days", style: textStylevar),
@@ -127,10 +156,10 @@ class _RelojState extends State<Reloj> {
                       ],
                     ),
                   ),
-                ),  
+                ),
               ),
             )
-          ],  
+          ],
         ),
       ),
     );
@@ -138,13 +167,13 @@ class _RelojState extends State<Reloj> {
 }
 
 class Noticias extends StatelessWidget {
-
-    final List<String> newsnews = [
+  final List<String> newsnews = [
     'Red',
     'Blue',
     'Gren',
     'Purple',
-    'Black',];
+    'Black',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -160,8 +189,8 @@ class Noticias extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: Text(
-              newsnews.join('\n'),
-              textAlign: TextAlign.left,
+            newsnews.join('\n'),
+            textAlign: TextAlign.left,
           ),
         ),
       ],

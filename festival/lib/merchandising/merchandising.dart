@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Merchandising extends StatelessWidget {
+class Merch extends StatefulWidget {
+  const Merch({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _MerchState createState() => _MerchState();
+}
+
+class _MerchState extends State<Merch> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,17 +39,22 @@ class Merchandising extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-            color: Color.fromRGBO(243, 156, 18, 1),
-            child: Column(
-              children: <Widget>[
-              ],
-            )),
+        body: StreamBuilder(
+            stream: Firestore.instance.collection('Merchandising').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const Text('Loading...');
+              return ListView.builder(
+                itemExtent: 100,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) =>
+                    _product(context, snapshot.data.documents[index]),
+              );
+            }),
         bottomNavigationBar: BottomAppBar(
           color: Color.fromRGBO(243, 156, 18, 1),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -64,8 +79,49 @@ class Merchandising extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.shopping_cart),
                   iconSize: 28.0,
-                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/merchandising'),
                 ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _product(BuildContext context, DocumentSnapshot document) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Image.network(document['imagenMerchandising'],
+                  height: 65, width: 65),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      document['descripcion'],
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Available: ' + document['unidades'].toString(),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      'Sizes: ' + document['tallasrestantes'],
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ]),
+              Text(
+                document['precio'].toString(),
+                textAlign: TextAlign.end,
+                style: TextStyle(fontSize: 12),
               ),
             ],
           ),
