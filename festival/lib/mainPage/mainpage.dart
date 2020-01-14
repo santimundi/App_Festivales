@@ -97,7 +97,7 @@ class _RelojState extends State<Reloj> {
   _hoursTime(DateTime _now) {
     Duration difference = dateFest.difference(DateTime.now());
     //Duration difference = dateFest.difference(_now);
-    return "${difference.inHours - (difference.inDays * 24 )}";
+    return "${difference.inHours - (difference.inDays * 24)}";
   }
 
   _minutesTime(_now) {
