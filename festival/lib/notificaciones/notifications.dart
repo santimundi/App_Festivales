@@ -106,6 +106,7 @@ class _NotificationsState extends State<Notifications> {
                     Text(
                       title,
                       style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.justify,
                     ),
                     SizedBox(height: 10),
                     SizedBox(
@@ -114,15 +115,16 @@ class _NotificationsState extends State<Notifications> {
                       child: Text(
                         text,
                         style: TextStyle(fontSize: 15),
+                        textAlign: TextAlign.justify
                       ),
                     ),
                   ]),
-              IconButton(
+              /*IconButton(
                 alignment: Alignment.topRight,
                 icon: Icon(Icons.clear),
                 color: Colors.black,
                 onPressed: () => Navigator.of(context).pushNamed('/stages'),
-              ),
+              ),*/
             ],
           ),
         ),
