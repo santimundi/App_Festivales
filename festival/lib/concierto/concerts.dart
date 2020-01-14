@@ -1,3 +1,4 @@
+/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:festival/concierto/concierto.dart';
 import 'package:festival/grupo/infoGroup.dart';
@@ -8,38 +9,81 @@ import 'package:festival/dataservice.dart' as db;
 class DiaStage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromRGBO(255, 255, 102, 0.9),
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.arrow_left,
-              size: 50,
-            ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Información',
+            style: TextStyle(color: Colors.black),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left:55.0, right: 10),
-            child: Text(
-                "Hola",
-                //conciertos.dia,
-                style: TextStyle(fontSize: 30),
-            ),
+          backgroundColor: Color.fromRGBO(243, 156, 18, 1),
+          centerTitle: true,
+          automaticallyImplyLeading: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.black,
+            onPressed: () => Navigator.pop(context, false),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0, left: 40),
-            child: Icon(
-              Icons.arrow_right,
-              size: 50,
-            ),
-          )
-        ],
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed('/notifications'),
+            )
+          ],
+        ),
+        body: Container(
+            color: Color.fromRGBO(243, 156, 18, 1),
+            child: Column(
+              children: <Widget>[
+              DiaStage(),
+              SizedBox(height: 20,),
+              ListConcerts(),
+            ],
+            )),
+        bottomNavigationBar: BottomAppBar(
+          color: Color.fromRGBO(243, 156, 18, 1),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: IconButton(
+                  iconSize: 32.0,
+                  icon: Icon(Icons.home),
+                  onPressed: () => Navigator.of(context).pushNamed('/mainPage'),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.calendar_today),
+                iconSize: 26.0,
+                onPressed: () => Navigator.of(context).pushNamed('/calendar'),
+              ),
+              IconButton(
+                icon: Icon(Icons.music_note),
+                iconSize: 29.0,
+                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: IconButton(
+                  icon: Icon(Icons.shopping_cart),
+                  iconSize: 28.0,
+                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-/*
+
 class ListConcerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -75,7 +119,7 @@ class ListConcerts extends StatelessWidget {
                     onTap: (){
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => InfoGroup(con: conciertos[index])),
+                      MaterialPageRoute(builder: (context) => InfoGroup(/*con: conciertos[index]*/)),
                       );
                     },
                     isThreeLine: true,
@@ -89,7 +133,7 @@ class ListConcerts extends StatelessWidget {
       ),
     );
   }
-*/
+}
 
 class Conciertos extends StatefulWidget {
   @override
@@ -108,11 +152,11 @@ class _ConciertosState extends State<Conciertos> {
               DiaStage(),
               SizedBox(height: 20,),
               //ListConcerts(),
-              
+              ListConcerts(),
             ],
           )
         ),
       ),
     );
   }
-}
+}*/

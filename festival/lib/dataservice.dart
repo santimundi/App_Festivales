@@ -7,11 +7,18 @@ Stream<List<Dia>> getDias() {
   return Firestore.instance.collection('Dia').snapshots().map(toDiaList);
 }
 
-Stream<List<Stage>> getStage(String groupID) {
+Stream<List<Stage>> getStages(String stageID) {
   return Firestore.instance
-      .collection('Dia/$groupID/Escenario')
+      .collection('Dia/$stageID/Escenario')
       .snapshots()
       .map(toStageList);
+}
+
+Stream<List<Concierto>> getConciertos(String stageID, String concertID){
+  return Firestore.instance
+      .collection('Dia/$stageID/Escenario/$concertID/Concierto')
+      .snapshots()
+      .map(toConciertoList);
 }
 
 /*
