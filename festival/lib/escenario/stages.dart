@@ -63,7 +63,7 @@ class BotonesBajo extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.music_note),
             iconSize: 29.0,
-            onPressed: () => Navigator.of(context).pushNamed('/stages'),
+            onPressed: () => Navigator.of(context).pushNamed('/days'),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 20),
@@ -147,11 +147,25 @@ class _StagesState extends State<Stages> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Padding(
+<<<<<<< HEAD
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            CartaConcierto(
+                                              idEsc: listaEscenarios[position].nombreStage,
+                                              numDia: widget.numPag)
+                                          ],
+                                        ),
+                                      ),
+=======
                                           padding: const EdgeInsets.all(8.0),
                                           child: CartasConcierto(
                                               idEsc: listaEscenarios[position]
                                                   .nombreStage,
                                               numDia: widget.numPag)),
+>>>>>>> 04bb6506d5090dba46b25c476ddf47b7e86f223d
                                     ],
                                   ),
                                 ),

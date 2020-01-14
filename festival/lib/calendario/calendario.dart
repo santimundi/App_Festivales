@@ -57,7 +57,7 @@ class Calendario extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.music_note),
                 iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+                onPressed: () => Navigator.of(context).pushNamed('/days'),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
