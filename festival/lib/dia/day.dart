@@ -16,7 +16,7 @@ class BotonDia extends StatelessWidget {
     return ListTile(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Stages(numPag: diaFesti.idDia,)
+          builder: (context) => Stages(numPag: diaFesti.idDia, nomDia: diaFesti.diaSemana)
         ));
       },
       title: Row(
