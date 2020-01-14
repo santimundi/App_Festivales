@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:festival/concierto/concierto.dart';
 //import 'grupo.dart';
 
-class InfoGroup extends StatelessWidget {
+class InfoGroup extends StatefulWidget {
   @override
+  _InfoGroupState createState() => _InfoGroupState();
+}
+
+class _InfoGroupState extends State<InfoGroup> {
+  @override
+  bool isPressed = false;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -63,23 +70,37 @@ class InfoGroup extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.music_note),
                 iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/stages'),
+                onPressed: () => Navigator.of(context).pushNamed('/days'),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: IconButton(
                   icon: Icon(Icons.shopping_cart),
                   iconSize: 28.0,
-                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed('/merchandising'),
                 ),
               ),
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.star,
+            color: Colors.black,
+          ),
+          backgroundColor: isPressed ? Colors.yellow : Colors.grey,
+          onPressed: () {
+            setState(() {
+              isPressed = !isPressed;
+            });
+          },
+        ),
       ),
     );
   }
 }
+
 /*
 class Iconos extends StatelessWidget {
   @override
@@ -131,10 +152,10 @@ class Foto extends StatelessWidget {
                 blurRadius: 10.0,
               )
             ],
-            image: DecorationImage(
+            /*image: DecorationImage(
               image: AssetImage('assets/LP.jpg'),
               fit: BoxFit.cover,
-            ),
+            ),*/
           ),
         ),
       ),
@@ -248,7 +269,7 @@ class Informacion extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                  ), 
+                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(35, 4, 4, 4),
                     child: Text(
