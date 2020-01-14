@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Timeline extends StatefulWidget {
   const Timeline({
@@ -37,62 +36,57 @@ class _TimelineState extends State<Timeline> {
           )
         ],
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           _selector(),
-          StreamBuilder(
-            stream: Firestore.instance.collection('Concierto').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return const Text('Loading...');
-              return ListView.builder(
-                itemExtent: 100,
-                itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index) =>
-                    _product(context, snapshot.data.documents[index]),
-              );
-            },
-          ),
+          _product(),
+          _product(),
+          _product(),
+          _product(),
+          _product(),
+          _product(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-          color: Color.fromRGBO(243, 156, 18, 1),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: IconButton(
-                  iconSize: 32.0,
-                  icon: Icon(Icons.home),
-                  onPressed: () => Navigator.of(context).pushNamed('/mainPage'),
-                ),
+        color: Color.fromRGBO(243, 156, 18, 1),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: IconButton(
+                iconSize: 32.0,
+                icon: Icon(Icons.home),
+                onPressed: () => Navigator.of(context).pushNamed('/mainPage'),
               ),
-              IconButton(
-                icon: Icon(Icons.calendar_today),
-                iconSize: 26.0,
-                onPressed: () => Navigator.of(context).pushNamed('/calendar'),
+            ),
+            IconButton(
+              icon: Icon(Icons.calendar_today),
+              iconSize: 26.0,
+              onPressed: () => Navigator.of(context).pushNamed('/calendar'),
+            ),
+            IconButton(
+              icon: Icon(Icons.music_note),
+              iconSize: 29.0,
+              onPressed: () => Navigator.of(context).pushNamed('/stages'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                iconSize: 28.0,
+                onPressed: () =>
+                    Navigator.of(context).pushNamed('/merchandising'),
               ),
-              IconButton(
-                icon: Icon(Icons.music_note),
-                iconSize: 29.0,
-                onPressed: () => Navigator.of(context).pushNamed('/days'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: IconButton(
-                  icon: Icon(Icons.shopping_cart),
-                  iconSize: 28.0,
-                  onPressed: () => Navigator.of(context).pushNamed('/merchandising'),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     );
   }
 
-  Widget _product(BuildContext context, DocumentSnapshot document) {
+  Widget _product() {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -101,7 +95,7 @@ class _TimelineState extends State<Timeline> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                document['horaInicio'] + ' - ' + document['horaFinal'],
+                '10:30 - 11:30',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(width: 50),
@@ -110,7 +104,7 @@ class _TimelineState extends State<Timeline> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      document['nombreGrupo'],
+                      'GunsnRoses',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -119,7 +113,7 @@ class _TimelineState extends State<Timeline> {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      document['Nombre_Escenario'],
+                      'Main Stage',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
