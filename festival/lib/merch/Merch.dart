@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'merchandising.dart';
 
 
 class Merch extends StatefulWidget {
@@ -12,17 +11,6 @@ class Merch extends StatefulWidget {
 }
 
 class _MerchState extends State<Merch> {
-  List<Merchandising> _merch;
-
-  @override
-  void initState() {
-    _merch = [
-      Merchandising(),
-      Merchandising(),
-      Merchandising(),
-    ];
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
