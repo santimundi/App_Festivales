@@ -11,7 +11,7 @@ class Mainpage extends StatelessWidget {
           centerTitle: true,
           title: Text('News'),
           actions: <Widget>[
-            Icon(
+            Icon( 
               Icons.notifications,
               color: Colors.black,
               size: 35,
