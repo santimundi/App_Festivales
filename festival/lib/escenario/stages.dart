@@ -281,16 +281,13 @@ class _CartasConciertoState extends State<CartasConcierto> {
               itemBuilder: (BuildContext context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(5),
-                  child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8WwvDPWAnGFOYpN16XU0YHnwI4jmAJhiI5AEU8JnL_-kvku6Atw&s'),
-                );
-                
-                /*new SizedBox(
+                  child:new SizedBox(
                    child: ListTile(
-                      /*leading: Image.network(
+                      leading: Image.network(
                         conc[index].imagenGrupo,
                         height: 10,
                         width: 10,
-                      ),*/
+                      ),
                       title: Text(conc[index].nombreGrupo),
                       subtitle: Text(
                           conc[index].horaInicio + " - " + conc[index].horaFinal),
@@ -299,17 +296,17 @@ class _CartasConciertoState extends State<CartasConcierto> {
                         color: Colors.red,
                       ),
                       onTap: () {
-                        /*Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Conciertos()),
-                                      );*/
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Conciertos()),
+                        );
                       },
                       //isThreeLine: true,
                     ),
                     //color: Colors.yellow,
-                  
-                );*/
+                  ),
+                );
               },
             );
           }),
